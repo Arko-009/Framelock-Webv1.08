@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FrameLock - The first standalone Android FPS Monitor engineered with true SurfaceFlinger compositor telemetry. No root, no PC, no Shizuku required.">
+  <meta name="theme-color" content="#07090e">
+  <title>FrameLock // Standalone Compositor FPS Telemetry for Android</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FrameLock Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Ambient Glowing Background Grid & Orbs -->
+  <div class="cyber-grid-overlay"></div>
+  <div class="ambient-light ambient-light-1"></div>
+  <div class="ambient-light ambient-light-2"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="nav-brand">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--cyan-primary);">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <span>Frame<span class="text-gradient">Lock</span></span>
+        <span class="brand-badge">v1.0.0</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#comparison" class="nav-link">The Truth</a></li>
+        <li><a href="#setup" class="nav-link">How It Works</a></li>
+        <li><a href="#download" class="nav-link">Downloads</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="#download" class="btn btn-secondary btn-sm">Get App</a>
+        <a href="downloads/FrameLock-v1.0.0-release.apk" download="FrameLock-v1.0.0-release.apk" class="btn btn-primary btn-sm download-trigger">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Direct APK
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        
+        <!-- Hero Left Column: Headings & CTAs -->
+        <div class="hero-content">
+          <div class="hero-pill">
+            <span class="pulse-dot"></span>
+            <span>HARDWARE-DIRECT TELEMETRY // NO ROOT // NO PC</span>
+          </div>
+          
+          <h1 class="hero-title">
+            True Android FPS. <br>
+            <span class="text-gradient">No Compromises.</span>
+          </h1>
+          
+          <p class="hero-subtitle">
+            Most Android FPS monitors read screen refresh rates or synthetic Choreographer loops. 
+            <strong>FrameLock</strong> taps directly into Android’s <code>SurfaceFlinger</code> compositor 
+            hardware via local loopback ADB to deliver 100% accurate, true rendered framerates in any game.
+          </p>
+
+          <div class="hero-cta-group">
+            <!-- Direct Download Option -->
+            <a href="downloads/FrameLock-v1.0.0-release.apk" download="FrameLock-v1.0.0-release.apk" class="btn btn-primary btn-lg download-trigger">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Direct APK Download
+            </a>
+
+            <!-- Google Drive Download Option -->
+            <a href="https://drive.google.com/drive/folders/framelock-mirror?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-gdrive btn-lg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+              Google Drive Mirror
+            </a>
+
+            <!-- Jump to Setup -->
+            <a href="#setup" class="btn btn-secondary btn-lg">
+              Setup Guide &rarr;
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>Build: v1.0.0 Release</span>
+            </div>
+            <div class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+              <span>Size: 6.37 MB</span>
+            </div>
+            <div class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+              <span>Android 11+ (API 30+)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Right Column: Interactive Simulator Phone Mockup -->
+        <div class="hero-mockup-wrapper">
+          <div class="simulator-container">
+            <div class="phone-mockup">
+              <div class="phone-screen" id="phoneScreen">
+                <!-- Real Gameplay Screenshot as Mockup Background -->
+                <img src="assets/images/gameplay-overlay.jpg" alt="FrameLock in Gameplay" class="mockup-game-bg">
+
+                <!-- Interactive Draggable FPS Overlay Badge -->
+                <div class="floating-hud-badge" id="draggableBadge">
+                  <span class="pulse-dot"></span>
+                  <span class="fps-text" id="liveFpsText">60.0</span>
+                  <span class="fps-unit">FPS</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Simulator Dynamic Controls -->
+            <div class="simulator-controls">
+              <div class="sim-label">
+                <span>INTERACTIVE HUD DEMO</span>
+                <span style="color: var(--cyan-primary);">TRY DRAGGING BADGE</span>
+              </div>
+              <div class="sim-btn-group">
+                <button class="sim-btn active" data-fps="60" data-jitter="0.8">60 Locked</button>
+                <button class="sim-btn" data-fps="120" data-jitter="1.4">120 Ultra</button>
+                <button class="sim-btn" data-fps="32" data-jitter="7.5">30 Drop</button>
+                <button class="sim-btn" data-fps="0" data-jitter="0">Standby</button>
+              </div>
+
+              <!-- Real-time SVG frametime waveform -->
+              <svg class="frametime-chart" viewBox="0 0 300 40">
+                <path id="frametimePath" class="chart-path" d="M 0 20 L 30 20 L 60 19 L 90 20 L 120 21 L 150 20 L 180 19 L 210 20 L 240 20 L 270 20 L 300 20"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Metric Badges Bar -->
+  <section class="container">
+    <div class="metric-bar">
+      <div class="metric-grid">
+        <div class="metric-stat">
+          <span class="stat-num text-gradient-cyan">6.37 MB</span>
+          <span class="stat-desc">Zero bloat, pure native Kotlin</span>
+        </div>
+        <div class="metric-stat">
+          <span class="stat-num text-gradient">0.2%</span>
+          <span class="stat-desc">Sub-percent CPU compositor footprint</span>
+        </div>
+        <div class="metric-stat">
+          <span class="stat-num text-gradient-cyan">UID 2000</span>
+          <span class="stat-desc">Privileged local shell execution</span>
+        </div>
+        <div class="metric-stat">
+          <span class="stat-num text-gradient">100%</span>
+          <span class="stat-desc">Offline loopback, zero telemetry leaks</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bento Grid Features Section -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="mono-tag">// ARCHITECTURAL ADVANTAGES</span>
+        <h2 class="section-title">Engineered For True Telemetry</h2>
+        <p class="section-subtitle">
+          Built from scratch to resolve every limitation of modern Android gaming monitors.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        
+        <!-- Card 1: Compositor Sampling (Span 2) -->
+        <div class="bento-card bento-card-span-2">
+          <div class="bento-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3 class="bento-title">Hardware SurfaceFlinger Telemetry</h3>
+          <p class="bento-text">
+            Other apps monitor their own app UI thread (which reports a flat 60/120 Hz regardless of game stutter) or query display modes. FrameLock polls Android's native graphics compositor directly. When a game chokes and drops frames, FrameLock measures the exact monotonic presentation timestamps of the game's actual rendering buffer.
+          </p>
+          <div class="bento-code-block">
+            $ service call SurfaceFlinger 1013 // Monotonic hardware presentation timestamps
+          </div>
+        </div>
+
+        <!-- Card 2: Embedded ADB Engine -->
+        <div class="bento-card">
+          <div class="bento-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+              <line x1="12" y1="20" x2="12.01" y2="20"></line>
+            </svg>
+          </div>
+          <h3 class="bento-title">100% On-Device ADB</h3>
+          <p class="bento-text">
+            No PC terminal cables. No Shizuku daemon required. FrameLock includes a custom Kotlin ADB pairing client with Conscrypt TLS to pair directly with Android's Wireless Debugging on <code>127.0.0.1</code>.
+          </p>
+        </div>
+
+        <!-- Card 3: Floating Overlay -->
+        <div class="bento-card">
+          <div class="bento-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <h3 class="bento-title">Draggable HUD Overlay</h3>
+          <p class="bento-text">
+            Tactical, minimalist floating HUD that you can place anywhere on your screen. Transparent glass aesthetic with zero touch interference for fast gaming swipes.
+          </p>
+        </div>
+
+        <!-- Card 4: Tactical Reactor Core -->
+        <div class="bento-card">
+          <div class="bento-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+          </div>
+          <h3 class="bento-title">Tactical Arc-Reactor Core</h3>
+          <p class="bento-text">
+            Sleek cyberpunk dashboard with intuitive status rings, connection heartbeats, and instant one-tap service toggle.
+          </p>
+        </div>
+
+        <!-- Card 5: Air-Gapped Privacy (Span 1) -->
+        <div class="bento-card">
+          <div class="bento-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h3 class="bento-title">Zero Internet Permission</h3>
+          <p class="bento-text">
+            FrameLock has <strong>NO</strong> <code>android.permission.INTERNET</code> declared. It physically cannot send telemetry or ads to the web. 100% private and air-gapped.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table: The Lie vs The Truth -->
+  <section id="comparison" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="mono-tag">// BENCHMARK INTEGRITY</span>
+        <h2 class="section-title">The Lie vs The Truth</h2>
+        <p class="section-subtitle">
+          Why 95% of Play Store "FPS counters" show 60 or 120 FPS even when your game is severely lagging.
+        </p>
+      </div>
+
+      <div class="comparison-container">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Methodology</th>
+              <th>Source Analyzed</th>
+              <th>Under Heavy Frame Drops</th>
+              <th>Requires PC or Shizuku?</th>
+              <th>Accuracy Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Standard Store Apps</strong></td>
+              <td>Choreographer / UI Looper</td>
+              <td><span class="badge-tag badge-bad">Lies (Shows 60/120 Hz)</span></td>
+              <td>No</td>
+              <td>Fake Telemetry</td>
+            </tr>
+            <tr>
+              <td><strong>Display Refresh Counters</strong></td>
+              <td>Display.getMode()</td>
+              <td><span class="badge-tag badge-bad">Static Refresh Rate</span></td>
+              <td>No</td>
+              <td>Completely Irrelevant</td>
+            </tr>
+            <tr>
+              <td><strong>Desktop ADB Tethering</strong></td>
+              <td>dumpsys SurfaceFlinger</td>
+              <td><span class="badge-tag badge-good">Real Compositor FPS</span></td>
+              <td><span class="badge-tag badge-bad">Requires PC Cable</span></td>
+              <td>Accurate but Tethered</td>
+            </tr>
+            <tr>
+              <td><strong>Shizuku Companion Apps</strong></td>
+              <td>Shizuku Binder Service</td>
+              <td><span class="badge-tag badge-good">Real Compositor FPS</span></td>
+              <td><span class="badge-tag badge-bad">Requires 3rd-Party App</span></td>
+              <td>Accurate but Complex</td>
+            </tr>
+            <tr class="highlight-row">
+              <td><strong class="text-gradient">FrameLock Android</strong></td>
+              <td>Direct SurfaceFlinger Engine</td>
+              <td><span class="badge-tag badge-good">True Compositor Drops</span></td>
+              <td><span class="badge-tag badge-good">100% Standalone On-Device</span></td>
+              <td><strong>100% Hardware Accurate</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Setup Walkthrough Section -->
+  <section id="setup" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="mono-tag">// SIMPLE 60-SECOND INITIALIZATION</span>
+        <h2 class="section-title">How To Setup FrameLock</h2>
+        <p class="section-subtitle">
+          One-time pairing over Android's native Wireless Debugging. After initial setup, FrameLock reconnects with one tap.
+        </p>
+      </div>
+
+      <div class="setup-grid">
+        
+        <!-- Left: Interactive Step Cards -->
+        <div class="step-cards">
+          <div class="step-card active" data-step="1" data-image="assets/images/setup-wireless.jpg">
+            <div class="step-num">1</div>
+            <div>
+              <h3 class="step-title">Open Wireless Debugging</h3>
+              <p class="step-desc">
+                In Android Developer Options, enable <strong>Wireless debugging</strong>, then tap <strong>Pair device with pairing code</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-card" data-step="2" data-image="assets/images/split-pairing.jpg">
+            <div class="step-num">2</div>
+            <div>
+              <h3 class="step-title">Enter Pairing Port & Code</h3>
+              <p class="step-desc">
+                Switch to FrameLock (or use Android split-screen / recent apps) and enter the 5-digit pairing port and 6-digit code.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-card" data-step="3" data-image="assets/images/hero-reactor.jpg">
+            <div class="step-num">3</div>
+            <div>
+              <h3 class="step-title">Tap Activate Reactor Core</h3>
+              <p class="step-desc">
+                Hit the glowing power core button. The floating compositor HUD appears instantly over your favourite games!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Dynamic Screenshot Display Frame -->
+        <div class="setup-display-frame">
+          <img id="setupDisplayImg" src="assets/images/setup-wireless.jpg" alt="FrameLock Setup Step" class="setup-display-img">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Hub Section -->
+  <section id="download" class="download-section">
+    <div class="container">
+      <div class="download-hub-card">
+        <div class="download-grid">
+          
+          <!-- Download Actions Left -->
+          <div class="download-info">
+            <span class="mono-tag" style="color: var(--green-neon);">// GET STARTED TODAY</span>
+            <h2 class="download-title">Download FrameLock v1.0.0</h2>
+            <p class="download-desc">
+              Get the official release signed APK directly onto your device or via Google Drive mirror. Fast, free, and open source.
+            </p>
+
+            <div class="download-actions-grid">
+              
+              <!-- Direct Download Option 1 -->
+              <a href="downloads/FrameLock-v1.0.0-release.apk" download="FrameLock-v1.0.0-release.apk" class="download-action-btn download-action-primary download-trigger">
+                <div class="action-btn-left">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <div class="action-btn-text">
+                    <span class="btn-main-label">Direct Download (APK)</span>
+                    <span class="btn-sub-label">Instant File Trigger // 6.37 MB</span>
+                  </div>
+                </div>
+                <span class="btn-arrow">&rarr;</span>
+              </a>
+
+              <!-- Google Drive Mirror Option 2 -->
+              <a href="https://drive.google.com/drive/folders/framelock-mirror?usp=sharing" target="_blank" rel="noopener noreferrer" class="download-action-btn download-action-gdrive">
+                <div class="action-btn-left">
+                  <!-- Google Drive Icon -->
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 19h20L12 2z"></path>
+                    <path d="M2 19l5-9h10l5 9"></path>
+                  </svg>
+                  <div class="action-btn-text">
+                    <span class="btn-main-label">Google Drive Mirror</span>
+                    <span class="btn-sub-label">Cloud Backup // Global CDN</span>
+                  </div>
+                </div>
+                <span class="btn-arrow">&rarr;</span>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Download Specs Card Right -->
+          <div class="download-specs-card">
+            <div class="spec-row">
+              <span class="spec-key">File Name</span>
+              <span class="spec-val">FrameLock-v1.0.0-release.apk</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">File Size</span>
+              <span class="spec-val">6.37 MB (6,681,473 bytes)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Target Android</span>
+              <span class="spec-val">Android 11 - 15 (API 30+)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Architecture</span>
+              <span class="spec-val">arm64-v8a / universal</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Package ID</span>
+              <span class="spec-val">com.framelock.fpsmonitor</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Permissions</span>
+              <span class="spec-val">Overlay Only (Zero Internet)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">License</span>
+              <span class="spec-val">Open Source // Community</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive FAQ Section -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="mono-tag">// COMMON QUESTIONS</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">
+          Everything you need to know about FrameLock telemetry and operation.
+        </p>
+      </div>
+
+      <div class="faq-list">
+        
+        <div class="faq-item active">
+          <div class="faq-question">
+            <span>Why does FrameLock need Wireless Debugging?</span>
+            <span class="faq-icon">&#9660;</span>
+          </div>
+          <div class="faq-answer">
+            Android's security architecture restricts normal applications from accessing the <code>SurfaceFlinger</code> hardware compositor. Without privileged shell permissions (UID 2000), apps can only guess framerates from their own UI loop. FrameLock connects to Android's built-in Wireless Debugging daemon on your own device (loopback 127.0.0.1) to obtain UID 2000 access completely legally and without requiring root or a PC.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can this get me banned in competitive games (PUBG, COD, Genshin)?</span>
+            <span class="faq-icon">&#9660;</span>
+          </div>
+          <div class="faq-answer">
+            <strong>No, absolutely not.</strong> FrameLock does not hook into, inject code, or touch any game memory or APK binaries. It only queries the Android system compositor from the outside via standard Android system services. From the game's perspective, FrameLock is completely invisible, just like a standard floating timer.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Do I need to pair every time I reboot my device?</span>
+            <span class="faq-icon">&#9660;</span>
+          </div>
+          <div class="faq-answer">
+            Android resets Wireless Debugging ports upon reboot. Once paired, you do not need to re-enter a pairing code; you only need to ensure Wireless Debugging is toggled ON, and FrameLock automatically reconnects to the active connection port.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Does FrameLock collect or transmit my data?</span>
+            <span class="faq-icon">&#9660;</span>
+          </div>
+          <div class="faq-answer">
+            FrameLock has <strong>zero internet permission</strong> declared in its Android Manifest. It has no network code, no trackers, no analytics SDKs, and no ads. It is 100% air-gapped and runs entirely within your device.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How does FrameLock achieve 0.2% CPU usage?</span>
+            <span class="faq-icon">&#9660;</span>
+          </div>
+          <div class="faq-answer">
+            FrameLock operates with an asynchronous event loop that queries compositor presentation timestamps once per second (1000ms cadence) using monotonic hardware clocks. It uses zero polling loops and renders its floating overlay using lightweight native Android Canvas draws.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Cyberpunk Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="nav-brand">
+          <div class="brand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--cyan-primary);">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <span>Frame<span class="text-gradient">Lock</span></span>
+        </div>
+
+        <ul class="footer-nav">
+          <li><a href="#features" class="footer-link">Features</a></li>
+          <li><a href="#comparison" class="footer-link">Truth</a></li>
+          <li><a href="#setup" class="footer-link">Setup</a></li>
+          <li><a href="#download" class="footer-link">Download</a></li>
+          <li><a href="#faq" class="footer-link">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 FrameLock Telemetry Project. Engineered for pure hardware accuracy.</div>
+        <div style="font-family: var(--font-mono); color: var(--green-neon);">
+          STATUS: ALL SYSTEMS OPERATIONAL
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification element -->
+  <div id="toast" class="toast-msg">
+    <span class="toast-icon">⚡</span>
+    <span id="toastText">Download starting: FrameLock-v1.0.0-release.apk</span>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
+
