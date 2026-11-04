@@ -1,6 +1,11 @@
 # FrameLock // Standalone Compositor FPS Telemetry for Android
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/framelock-web/deploy-status)](https://framelock-web.netlify.app/)
+[![Live Web Portal](https://img.shields.io/badge/Live_Site-framelock--web.netlify.app-00ad9f?style=flat&logo=netlify)](https://framelock-web.netlify.app/)
+
 Official landing page and distribution hub for **FrameLock** — the first standalone Android FPS monitor engineered with true `SurfaceFlinger` compositor telemetry. No root, no PC, no Shizuku required.
+
+🌐 **Live Website:** [https://framelock-web.netlify.app/](https://framelock-web.netlify.app/)
 
 ---
 
