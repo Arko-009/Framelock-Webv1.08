@@ -1,0 +1,19 @@
+[build]
+  publish = "."
+
+# Ensure correct Android APK MIME type and instant direct download headers
+[[headers]]
+  for = "/downloads/*"
+  [headers.values]
+    Content-Type = "application/vnd.android.package-archive"
+    Content-Disposition = "attachment; filename=\"FrameLock-v1.0.0-release.apk\""
+    Cache-Control = "public, max-age=31536000, immutable"
+    X-Content-Type-Options = "nosniff"
+
+# Security & performance headers for static assets
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
